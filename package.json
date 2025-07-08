@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "online video player web-service",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "dev":"nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,5 +16,11 @@
     "chai"
   ],
   "author": "Saurabh Ganvir",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
