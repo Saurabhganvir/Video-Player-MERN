@@ -1,0 +1,18 @@
+{
+  "name": "videoplayer",
+  "version": "1.0.0",
+  "description": "online video player web-service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "backend",
+    "express",
+    "mongodb",
+    "chai"
+  ],
+  "author": "Saurabh Ganvir",
+  "license": "ISC"
+}
