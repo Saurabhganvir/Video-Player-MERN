@@ -106,7 +106,7 @@ const loginUser = asyncHandler( async (req, res)=>{
 
     const {email, username , password} = req.body;
 
-    if(!username || !email){
+    if(!(username  || email)){
         throw new ApiError(400, "Username or email required");
     }
 
@@ -146,13 +146,35 @@ const loginUser = asyncHandler( async (req, res)=>{
 })
 
 
-// const logOutUser = asyncHandler(async(req, res)=>{
-//     //clear cookies
-//     //remove access and refresh tokens
-
-// })
+const logOutUser = asyncHandler(async(req, res)=>{
+    //clear cookies
+    //remove access and refresh tokens
+    // we do not have access of user directly so we create auth middleware and add req.user = user
+    // now we can access req.user
+    await User.findByIdAndUpdate(
+        req.user._id,{
+            $set:{
+                refreshToken: undefined
+            }
+        },
+        {
+            new: true
+        }
+    )
+    
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+    return res
+    .status(200)
+    .clearCookie(accessToken)
+    .clearCookie(refreshToken)
+    .json( new ApiResponse(200, {}, "User logged out"))
+})
 
 export {
     registerUser,
-    loginUser
+    loginUser,
+    logOutUser
 }
